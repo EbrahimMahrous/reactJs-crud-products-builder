@@ -1,6 +1,6 @@
 // ** Import `uuid` to generate unique IDs for each product.
 import { v4 as uuid } from 'uuid';
-import { IProduct } from "../interfaces";
+import { IFormInput, IProduct } from "../interfaces";
 
 
 
@@ -68,3 +68,31 @@ export const ProductList: IProduct[] = [
         },
     }
 ];
+
+
+export const formInputsList: IFormInput[] = [
+    {
+        id: "title",
+        name: "title",
+        lable: "product Title",
+        type: "text"
+    },
+    {
+        id: "description",
+        name: "description",
+        lable: "product description",
+        type: "text"
+    },
+    {
+        id: "image",
+        name: "imageURL",
+        lable: "product Image URL",
+        type: "text"
+    },
+    {
+        id: "price",
+        name: "price",
+        lable: "product price",
+        type: "text"
+    }
+]
