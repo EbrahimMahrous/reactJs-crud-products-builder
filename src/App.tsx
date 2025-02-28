@@ -7,7 +7,8 @@ import Button from "./components/UI/Button";
 // ** Data
 import { formInputsList, ProductList } from "./data";
 // ** Hooks
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { IProduct } from "./interfaces";
 
 
 
@@ -15,15 +16,29 @@ import { useState } from "react";
 
 export default function App(){
     // ** State
+    const [product, setProduct] = useState<IProduct>({
+      title: '',
+      description: '',
+      imageURL: '',
+      price: '',
+      colors: [],
+      category: {
+        name: '',
+        imageURL: ''
+      }
+    })
+
     const [isOpen, setIsOpen] = useState(false)
 
     // ** Handler
-    function openModel() {
-      setIsOpen(true)
-    }
-
-    function closeModel() {
-      setIsOpen(false)
+    const openModel = () => {setIsOpen(true)}
+    const closeModel = () => {setIsOpen(false)}
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      const {value, name} = e.target
+      setProduct({
+        ...product,
+        [name]: value,
+      })
     }
 
     // ** Renders
@@ -34,7 +49,13 @@ export default function App(){
     const renderFormInputList = formInputsList.map((input => {
       return <div className="flex flex-col">
         <label htmlFor= {input.id} className="mb-[2px] text-sm font-medium text-gray-700">{input.lable}</label>
-        <Input type= 'text' id= {input.id} name= {input.name}/>
+        <Input 
+        type= 'text' 
+        id= {input.id} 
+        name= {input.name}
+        value= {''}
+        onChange= {onChangeHandler}
+        />
       </div>
     }))
     return (
