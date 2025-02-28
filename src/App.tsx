@@ -40,6 +40,7 @@ export default function App(){
         [name]: value,
       })
     }
+    console.log(product)
 
     // ** Renders
     const renderProductList = ProductList.map((product)=>{
@@ -53,7 +54,7 @@ export default function App(){
         type= 'text' 
         id= {input.id} 
         name= {input.name}
-        value= {''}
+        value= {product[input.name]}
         onChange= {onChangeHandler}
         />
       </div>
