@@ -17,7 +17,7 @@ export const ProductList: IProduct[] = [
         description: 'A high-performance electric sedan with a long range and cutting-edge technology.',
         imageURL: TeslaImage,
         price: '$79999',
-        colors: ['#000', '#fff', '#ccc', '#ff0000'],
+        colors: ["#000000", "#4B4B4B", "#C0392B", "#2C3E50", "#145A32", "#E67E22", "#D4AC0D", "#2980B9", "#BDC3C7"],
         category: {
             name: 'Electric Cars',
             imageURL: TeslaImage,
@@ -29,7 +29,7 @@ export const ProductList: IProduct[] = [
         description: 'An electric SUV inspired by the classic Mustang, offering great performance and range.',
         imageURL: FordImage,
         price: '$56995',
-        colors: ['#000', '#ff0000', '#fff', '#0057b8'],
+        colors: ["#000000", "#4B4B4B", "#C0392B", "#2C3E50", "#145A32", "#E67E22", "#D4AC0D", "#2980B9", "#BDC3C7"],
         category: {
             name: 'SUV',
             imageURL: FordImage,
@@ -41,7 +41,7 @@ export const ProductList: IProduct[] = [
         description: 'A powerful sports sedan with a turbocharged inline-six engine and sharp handling.',
         imageURL: BmwImage,
         price: '$74995',
-        colors: ['#000', '#ffffff', '#00ff00', '#0000ff'],
+        colors: ["#000000", "#4B4B4B", "#C0392B", "#2C3E50", "#145A32", "#E67E22", "#D4AC0D", "#2980B9", "#BDC3C7"],
         category: {
             name: 'Sports Cars',
             imageURL: BmwImage,
@@ -53,7 +53,7 @@ export const ProductList: IProduct[] = [
         description: 'A luxury off-road SUV with a boxy design and a powerful V8 engine.',
         imageURL: MercedesImage,
         price: '$139900',
-        colors: ['#000', '#ffffff', '#808080', '#006400'],
+        colors: ["#000000", "#4B4B4B", "#C0392B", "#2C3E50", "#145A32", "#E67E22", "#D4AC0D", "#2980B9", "#BDC3C7"],
         category: {
             name: 'Luxury SUV',
             imageURL: MercedesImage,
@@ -65,7 +65,7 @@ export const ProductList: IProduct[] = [
         description: 'An iconic sports car with a twin-turbo flat-six engine, delivering extreme speed and handling.',
         imageURL: PorscheImage,
         price: '$216300',
-        colors: ['#000', '#ff0000', '#ffffff', '#cccccc'],
+        colors: ["#000000", "#4B4B4B", "#C0392B", "#2C3E50", "#145A32", "#E67E22", "#D4AC0D", "#2980B9", "#BDC3C7"],
         category: {
             name: 'Supercars',
             imageURL: PorscheImage,
@@ -100,3 +100,17 @@ export const formInputsList: IFormInput[] = [
         type: "text"
     }
 ]
+
+
+export const colors: string[] = [
+    "#000000",
+    "#4B4B4B",
+    "#C0392B",
+    "#2C3E50",
+    "#145A32",
+    "#E67E22",
+    "#D4AC0D",
+    "#2980B9",
+    "#BDC3C7",
+]
+

@@ -5,14 +5,15 @@ import Modal from "./components/UI/Modal";
 import Input from "./components/UI/Input";
 import Button from "./components/UI/Button";
 // ** Data
-import { formInputsList, ProductList } from "./data";
+import { colors, formInputsList, ProductList } from "./data";
 // ** Hooks
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IProduct } from "./interfaces";
 import { productValidation } from "./validation";
 import ErrorMessage from "./components/ErrorMessage";
+import CircleColor from "./components/UI/CircleColor";
 
-
+import { v4 as uuid } from 'uuid';
 
 
 
@@ -28,9 +29,12 @@ export default function App(){
         imageURL: ''
       }
   }
-    // ** State
+    // ** State    
+    // ** To add new product
+    const [products, setProducts] = useState<IProduct[]>(ProductList)
     const [product, setProduct] = useState<IProduct>(defaultProductObj)
     const [errors, setErrors] = useState({title: '', description: '', imageURL: '', price: ''})
+    const [temColor, setTemColor] = useState<string[]>([])
     const [isOpen, setIsOpen] = useState(false)
 
     // ** Handler
@@ -71,6 +75,11 @@ export default function App(){
         setErrors(errors)
         return
       }
+
+      setProducts(prev => [{...product, id: uuid(), colors: temColor}, ...prev])
+      setProduct(defaultProductObj)
+      setTemColor([])
+      closeModel()
       console.log('Send Success')
     }
 
@@ -80,7 +89,7 @@ export default function App(){
 
 
     // ** Renders
-    const renderProductList = ProductList.map((product)=>{
+    const renderProductList = products.map((product)=>{
       return <ProductCard key={product.id} product= {product}/>
     })
 
@@ -98,6 +107,16 @@ export default function App(){
       </div>
     }))
 
+    const renderProductColors = colors.map(color => (
+    <CircleColor key={color} color= {color} onClick = {() => {
+      if (temColor.includes(color)){
+        setTemColor(prev => prev.filter(item => item !== color))
+        return
+      }
+      setTemColor(prev => [...prev, color])
+    }} 
+    />
+    ))
 
     return (
       <main className="container mx-auto sm:p-8 lg:p-16 xl:p-24 2xl:p-28">
@@ -114,6 +133,20 @@ export default function App(){
         <Modal isOpen= {isOpen} closeModal={closeModel} title="ADD A NEW PRODUCT">
           <form className="space-y-3" onSubmit={submitHandler}>
             {renderFormInputList}
+            <div className="flex items-center my-5 flex-wrap space-x-1">
+              {renderProductColors}
+            </div>
+            <div className="flex items-center my-5 flex-wrap space-x-1">
+              {temColor.map(color => (
+                <span 
+                  key={color} 
+                  className= 'p-1 mr-1 mb-1 text-xs rounded-md text-white cursor-pointer'
+                  style={{backgroundColor: color}}
+                >
+                  {color}
+                </span>
+              ))}
+            </div>
             <div className="flex items-center space-x-3">
               <Button className="bg-indigo-400 hover:bg-indigo-500 p-4 w-full rounded-md text-white">Submit</Button>
               <Button className="bg-red-400 hover:bg-red-500 p-4 w-full rounded-md text-white" onClick={onCancel}>Cancel</Button>
@@ -123,3 +156,5 @@ export default function App(){
       </main>
     );
 }
+
+
