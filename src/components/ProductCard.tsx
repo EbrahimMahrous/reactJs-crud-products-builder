@@ -1,3 +1,4 @@
+
 import { IProduct } from "../interfaces";
 import { txtSlicer } from "../utils/function";
 import Image from "./Image";
@@ -10,13 +11,22 @@ import CircleColor from "./UI/CircleColor";
 
 interface IProps {
     product: IProduct;
+    setProductToEdit: (product: IProduct) => void;
+    setIsOpenEditModal: (isOpen: boolean) => void;
 }
-const ProductCard = ({product}: IProps) => {
+const ProductCard = ({product, setProductToEdit, setIsOpenEditModal}: IProps) => {
     const {title, description, imageURL, price, colors, category} = product
 
     // ** Render
     const renderProductColors = colors.map(color => (
         <CircleColor key={color} color= {color} /> ))
+
+    // ** Handler
+    const onEditHandler = () => {
+        setProductToEdit(product)
+        setIsOpenEditModal(true)
+        console.log("Edit Product", product)
+    }
 
 
     return (
@@ -49,16 +59,15 @@ const ProductCard = ({product}: IProps) => {
             <div className="flex items-center justify-evenly space-x-2 mt-5">
                 <Button 
                     className="bg-indigo-400"
-                    onClick= {()=>{
-                        return console.log('clicked');
-                    }}
+                    onClick= {onEditHandler}
                 >
                     Edit
                 </Button>
                 <Button className="bg-red-400">Delete</Button>
-            </div>  
+            </div> 
         </div>
     );
 }
 
 export default ProductCard;
+

@@ -1,3 +1,4 @@
+import { ProductName } from "../types"
 
 
 
@@ -17,8 +18,16 @@ export interface IProduct{
 }
 
 export interface IFormInput{
+    input: any
     id:  string,
-    name: "title" | "description" | "imageURL" | "price",
+    name: ProductName,
     lable: string,
     type: string,
+}
+
+
+export interface ICateogry{
+    id: string,
+    name: string,
+    imageURL: string
 }
